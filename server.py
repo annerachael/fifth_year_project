@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, make_response
+from flask import Flask, render_template, request, redirect, url_for, flash, make_response, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import SignUpForm, LoginForm
 import phonenumbers
@@ -193,8 +193,15 @@ def code():
     except Exception as err:
         print(err)
     return redirect(url_for("dashboard"))
+    
+
+@app.route('/receiver', methods=['POST', 'GET'])
+def receiver():
+  data = request.get_json()
+  print(data)
+  return make_response(jsonify({'message': "Success", "status": 0}))
 
 #route different pages
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

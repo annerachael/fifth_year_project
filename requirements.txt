@@ -17,8 +17,6 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 Mako==1.1.4
 MarkupSafe==1.1.1
-mysql==0.0.2
-mysqlclient==2.0.3
 natsort==7.1.1
 paramiko==2.7.2
 phonenumbers==8.12.17
