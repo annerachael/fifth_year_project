@@ -1,0 +1,32 @@
+{% import "bootstrap/utils.html" as utils %}
+{% extends "base.html" %}
+
+{% block content %}
+    <br/>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: red">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <br/>
+    {% if paid %}
+        <p>Your account is paid. Continue enjoying WiFi services</p>
+    {% else %}
+        <div class="content-section">
+            <p>You have not renewed your subscription to this WiFi</p>
+            <br/>
+            <p>Send money via MPESA to <a href="tel: {{ phone }}" class="btn btn-link">+254707332826</a></p>
+            <br/>
+            <p>And then enter the code received in the textfield below</p>
+            <br/>
+            <form method="post" action="{{ url_for('code') }}">
+                <label style="font-weight: bold">MPESA Code here</label>
+                <input type="text" name="code" id="code" placeholder="MPESA Code">
+                <button type="submit" name="submit" id="submit">Submit</button>
+            </form>
+        </div>
+    {% endif %}
+    <p> Logout <a href="{{ url_for('logout') }}">here</a></p>
+{% endblock %}
