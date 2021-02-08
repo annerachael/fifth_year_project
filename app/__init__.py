@@ -12,7 +12,6 @@ from flask_sqlalchemy import SQLAlchemy
 This file shall contain configurations for the web app
 """
 
-
 # create app
 app = Flask(__name__)
 
@@ -25,6 +24,8 @@ login = LoginManager()
 
 def create_app():
     global app, db, migrate, login, bootstrap
+    import instance.config as cfg
+    app.config['DEBUG'] = cfg.DEBUG
     app.config['SECRET_KEY'] = 'secretkey'
 
     # database set up
